@@ -3,9 +3,6 @@ package com.example.mysql;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController                  // Indicates this is a Controller class
 @RequestMapping(path = "/users") // It deals with users related request
 public class UserController {
@@ -30,12 +27,7 @@ public class UserController {
      * Get all available users.
      */
     @GetMapping()
-    public @ResponseBody List<User> getUsers() {
-        List<User> usersList = new ArrayList<>();
-        Iterable<User> users = userRepository.findAll();
-        for (User user : users) {
-            usersList.add(user);
-        }
-        return usersList;
+    public @ResponseBody Iterable<User> getUsers() {
+        return userRepository.findAll();
     }
 }
